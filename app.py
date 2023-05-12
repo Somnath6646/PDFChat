@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+
 import os
 import streamlit as st
 from PyPDF2 import PdfReader
@@ -11,7 +11,6 @@ from langchain.callbacks import get_openai_callback
 
 
 def main():
-    load_dotenv()
     #print(os.getenv('OPENAI_API_KEY'))
     
     st.set_page_config(page_title="Ask your PDF")
