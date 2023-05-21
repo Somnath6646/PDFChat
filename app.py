@@ -54,7 +54,7 @@ def main():
         if user_question:
             docs = knowledge_base.similarity_search(user_question)
             
-            llm = OpenAI(temperature=0.9)
+            llm = OpenAI(model_name="gpt3.5-turbo", temperature=0.9)
 
             chain = load_qa_chain(llm, chain_type="stuff")
             with get_openai_callback() as cb:
