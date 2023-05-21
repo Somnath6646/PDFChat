@@ -26,19 +26,28 @@ def main():
         for page in pdf_reader.pages:
             text += page.extract_text()
 
-        #split into chunks
-        text_splitter = CharacterTextSplitter(
-            separator="\n",
-            chunk_size=1000,
-            chunk_overlap=200,
-            length_function=len
-        )  
 
-        chunks = text_splitter.split_text(text)
+        max_length = 1000
+        original_string = text
+        temp_string = ""
+        strings_list = []
+
+        for character in original_string:
+            if len(temp_string) < max_length:
+                temp_string += character
+            else:
+                strings_list.append(temp_string)
+                temp_string = ""
+
+        if temp_string:
+            strings_list.append(temp_string)
+
+        #split into chunks
+        
 
         # create embeddings
         embeddings = OpenAIEmbeddings()
-        knowledge_base = FAISS.from_texts(chunks, embedding=embeddings)
+        knowledge_base = FAISS.from_texts(strings_list, embedding=embeddings)
 
         user_question = st.text_input("Ask a question about your PDF")
 
