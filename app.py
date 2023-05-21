@@ -27,7 +27,7 @@ def main():
             text += page.extract_text()
 
 
-        max_length = 1000
+        max_length = 1800
         original_string = text
         temp_string = ""
         strings_list = []
