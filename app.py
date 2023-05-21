@@ -29,7 +29,7 @@ def main():
         #split into chunks
         text_splitter = CharacterTextSplitter(
             separator=" ",
-            chunk_size=1500,
+            chunk_size=1000,
             chunk_overlap=200,
             length_function=len
         )  
